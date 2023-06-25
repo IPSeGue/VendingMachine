@@ -8,9 +8,9 @@
 | + removeItemSlot(slotNumber: Integer): void |
 | + getItemSlot(slotNumber: Integer): ItemSlot |
 | + displayItemSlots(): void |
-| + receivePayment(amount: double): boolean |
+| + receivePayment(amount: int): boolean |
 | + dispenseItem(slotNumber: Integer): void |
-| + produceChange(amount: double): void |
+| + produceChange(amount: int): void |
 | + performMaintenance(): void |
 | + printTransactionSummary(): void |
 ----------------------------------------------
@@ -37,12 +37,12 @@
 |              Item            |
 --------------------------------
 | - name: String               |
-| - price: double              |
+| - price: int                 |
 | - calories: int              |
 --------------------------------
 | + getName(): String          |
 | + setName(name: String): void|
-| + getPrice(): double         |
+| + getPrice(): int            |
 | + setPrice(price: double): void|
 | + getCalories(): int         |
 | + setCalories(calories: int): void|
@@ -58,13 +58,13 @@
 | - startingInventory: HashMap<Item, Integer> |
 | - endingInventory: HashMap<Item, Integer>   |
 | - quantitySold: HashMap<Item, Integer>      |
-| - totalAmountCollected: double              |
+| - totalAmountCollected: int              |
 | - denominations: HashMap<Integer, Integer>  |
 --------------------------------
 | + addItem(item: Item, quantity: Integer): void |
 | + removeItem(item: Item, quantity: Integer): void |
 | + updateQuantitySold(item: Item, quantity: Integer): void |
-| + updateTotalAmountCollected(amount: double): void |
+| + updateTotalAmountCollected(amount: int): void |
 | + addDenomination(denomination: Integer, quantity: Integer): void |
 | + removeDenomination(denomination: Integer): void |
 | + updateDenominationQuantity(denomination: Integer, quantity: Integer): void |
