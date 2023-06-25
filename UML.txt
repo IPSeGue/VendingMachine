@@ -41,9 +41,9 @@
 | - calories: int              |
 --------------------------------
 | + getName(): String          |
-| + setName(name: String): void|
+| + setName(name: String): void| // i think wala toh
 | + getPrice(): int            |
-| + setPrice(price: double): void|
+| + setPrice(price: int): void | // i think wala toh
 | + getCalories(): int         |
 | + setCalories(calories: int): void|
 --------------------------------
