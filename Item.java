@@ -2,6 +2,7 @@ public class Item{
     private final String name;
     private final int price;
     private final int calories;
+    private int ID;
 
     public Item(String name, int price, int calories) {
         this.name = name;

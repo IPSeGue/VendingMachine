@@ -5,7 +5,11 @@ public class Main{
         HashMap<Item, Integer> slot = new HashMap<>();
         int num = 0;
         Scanner sc = new Scanner(System.in);
+
+        VendingMachine vendingMachine = new VendingMachine();
         int choice = 0;
+        boolean created = false;
+
         while(choice != 3){
             System.out.println("Choose an option: ");
             System.out.println("1. Create a Vending Machine");
@@ -16,6 +20,10 @@ public class Main{
 
             switch (choice){
                 case 1:
+                    if (created){
+                        System.out.println("You have created your own vending machine");
+                        break;
+                    }
                     // Name, price, calories
                     Item Water = new Item("Water", 21, 10);
                     Item Coke = new Item("Coke", 99, 10);
@@ -46,12 +54,16 @@ public class Main{
                     slot.put(Soda,num);
                     slot.put(Juice,num);
                     
-                    RegularVendingMachine regular = new RegularVendingMachine(slot);
+                    vendingMachine.create(slot);
                     System.out.println("Successfully created");
+                    created = true;
                     break;
                     
                 case 2:
-                    System.out.print("\nExiting Program");
+                    if (created) {
+                        vendingMachine.test();
+                    }
+                    
                     break;
 
                 case 3:

@@ -18,7 +18,7 @@ public class RegularVendingMachine{
     
     
 
-    public void restockItemSlot(int slotNumber, int quantity) {
+    /* public void restockItemSlot(int slotNumber, int quantity) {
         ItemSlot itemSlot = itemSlots.get(slotNumber);
         if (itemSlot != null) {
             itemSlot.setQuantity(quantity);
@@ -26,17 +26,24 @@ public class RegularVendingMachine{
         } else {
             System.out.println("Invalid slot number.");
         }
-    }
+    } 
 
-    public void displayItemSlots() {
-        for (Map.Entry<Integer, ItemSlot> entry : itemSlots.entrySet()) {
-            int slotNumber = entry.getKey();
-            ItemSlot itemSlot = entry.getValue();
-            Item item = itemSlot.getItem();
-            System.out.println("Slot " + slotNumber + ": " + item.getName() + " - Price: " + item.getPrice() + " - Calories: " + item.getCalories());
+    public Integer getItemSlot(Item item) {
+        return itemSlots.get(item);
+    } */
+
+    public void displayAvailableItems() {
+        System.out.println("Available Items:");
+        for (Map.Entry<Item, Integer> entry : itemSlots.entrySet()) {
+            Item item = entry.getKey();
+            int quantity = entry.getValue();
+            String name = item.getName();
+            int price = item.getPrice();
+            String output = String.format("%-10s| %-6d| %-8d", name, price, quantity);
+            System.out.println(output);
         }
-    }
 
+    }
 
     public boolean receivePayment(int amount) { 
         // Process the payment from the user
@@ -55,23 +62,23 @@ public class RegularVendingMachine{
         // Perform maintenance tasks on the vending machine
     }
 
-    public void printTransactionSummary() {
-    // Print the starting inventory
-    System.out.println("Starting Inventory:");
-    for (Map.Entry<Integer, ItemSlot> entry : itemSlots.entrySet()) {
-        int slot = ((ItemSlot) entry).getSlotNumber();
-        int quantity = ((ItemSlot) entry).getQuantity();
-        String name = ((ItemSlot) entry).getItemName();
-        System.out.println("Slot " + slot + ": " + quantity + " " + name);
-    }
+    /* public void printTransactionSummary() {
+        // Print the starting inventory
+        System.out.println("Starting Inventory:");
+        for (Map.Entry<Integer, ItemSlot> entry : itemSlots.entrySet()) {
+            int slot = ((ItemSlot) entry).getSlotNumber();
+            int quantity = ((ItemSlot) entry).getQuantity();
+            String name = ((ItemSlot) entry).getItemName();
+            System.out.println("Slot " + slot + ": " + quantity + " " + name);
+        }
 
-    // Print the ending inventory
-    System.out.println("Ending Inventory:");
-    for (Map.Entry<Integer, ItemSlot> entry : itemSlots.entrySet()) {
-        System.out.println("Slot " + itemSlots.getSlotNumber() + ": " + itemSlots.getQuantity() + " " + itemSlots.getItem().getItemName());
-    }
+        // Print the ending inventory
+        System.out.println("Ending Inventory:");
+        for (Map.Entry<Integer, ItemSlot> entry : itemSlots.entrySet()) {
+            System.out.println("Slot " + itemSlots.getSlotNumber() + ": " + itemSlots.getQuantity() + " " + itemSlots.getItem().getItemName());
+        }
 
-    // Print the total sales
-    System.out.println("Total Sales: $" + totalSales);
-}
+        // Print the total sales
+        System.out.println("Total Sales: $" + totalSales);
+    } */
 }

@@ -1,11 +1,11 @@
 public class ItemSlot{
-    private int slotNumber;
+    private int slotNumber = 0;
     private Item item;
     private int quantity;
     
 
     public ItemSlot(int slotNumber, Item item, int quantity) {
-        this.slotNumber = slotNumber;
+        this.slotNumber = 1;
         this.item = item;
         this.quantity = quantity;
     }
