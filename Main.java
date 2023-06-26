@@ -63,7 +63,6 @@ public class Main{
                     if (created) {
                         vendingMachine.test();
                     }
-                    
                     break;
 
                 case 3:

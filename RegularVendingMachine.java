@@ -1,11 +1,16 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.ArrayList;
 
 public class RegularVendingMachine{
     private HashMap<Item, Integer> itemSlots;
     private ArrayList<Transaction> transactions;
+    private HashMap<Item, Integer> startingInventory;
+    private HashMap<Item, Integer> endingInventory;
 
+    Scanner sc = new Scanner(System.in);
+    
     public RegularVendingMachine(HashMap<Item, Integer> slot){
         this.itemSlots = slot;
         transactions = new ArrayList<>();
@@ -14,20 +19,8 @@ public class RegularVendingMachine{
     public void selectingItems(){
         
     }
-    
-    
-    
-
-    /* public void restockItemSlot(int slotNumber, int quantity) {
-        ItemSlot itemSlot = itemSlots.get(slotNumber);
-        if (itemSlot != null) {
-            itemSlot.setQuantity(quantity);
-            System.out.println("Slot " + slotNumber + " has been restocked with " + quantity + " items.");
-        } else {
-            System.out.println("Invalid slot number.");
-        }
-    } 
-
+     
+    /*
     public Integer getItemSlot(Item item) {
         return itemSlots.get(item);
     } */
@@ -40,7 +33,14 @@ public class RegularVendingMachine{
             String name = item.getName();
             int price = item.getPrice();
             String output = String.format("%-10s| %-6d| %-8d", name, price, quantity);
-            System.out.println(output);
+            if (quantity >= 1){
+                System.out.println(output);
+            }
+            else{
+                System.out.println(output);
+                System.out.print("SOLD OUT");
+            } 
+            
         }
 
     }
@@ -54,12 +54,111 @@ public class RegularVendingMachine{
         // Dispense the item from the specified slot
     }
 
-    public void produceChange(int amount) {
-        // Calculate and provide change to the user
+    public void replenishMoney() {
+        HashMap<Integer, Integer> temp;
+
     }
 
-    public void performMaintenance() {
+    public int computeStartingInventory() {
+        int startingInventoryCount = 0;
+        for (int quantity : itemSlots.values()) {
+            startingInventoryCount += quantity;
+        }
+        return startingInventoryCount;
+    }
+
+    public int computeEndingInventory() {
+        int endingInventoryCount = 0;
+        for (int quantity : endingInventory.values()) {
+            endingInventoryCount += quantity;
+        }
+        return endingInventoryCount;
+    }
+
+
+
+    public void maintenance() {
         // Perform maintenance tasks on the vending machine
+        
+        int choice = 0;
+        int num;
+        String itemName;
+        boolean found = false;
+
+        while(choice !=6){
+            System.out.println("1: Restocking");
+            System.out.println("2: Change Price");
+            System.out.println("3: Collecting Payment");
+            System.out.println("4: Replenishing Money");
+            System.out.println("5: Printing Summary of the transactions");
+            System.out.println("6: Exit");
+            choice = Integer.parseInt(sc.nextLine());
+        
+            switch(choice){
+                case 1:
+                    displayAvailableItems();
+                    System.out.println("Enter the Name");
+                    itemName = sc.nextLine();
+
+                    for (Map.Entry<Item, Integer> items : itemSlots.entrySet()) {
+                        Item item = items.getKey();
+                        int quantity = items.getValue();
+                        String name = item.getName();
+                        if (itemName.equalsIgnoreCase(item.getName())) {
+                            System.out.println("What quantity you want to apply to "+ item.getName());
+                            num = Integer.parseInt(sc.nextLine());
+                            quantity = num;
+                            itemSlots.put(item, quantity);
+                            found = true;
+                        }
+                    }
+
+                    if (!found){
+                         System.out.println("Can't find the item");
+                    }
+                    break;
+                case 2: 
+                    displayAvailableItems();
+                    System.out.println("Enter the Name");
+                    itemName = sc.nextLine();
+
+                    for (Map.Entry<Item, Integer> items : itemSlots.entrySet()) {
+                        Item item = items.getKey();
+                        int quantity = items.getValue();
+                        String name = item.getName();
+                        int price = item.getPrice();
+                        if (itemName.equalsIgnoreCase(item.getName())) {
+                            System.out.println("What Price you want to apply to "+ item.getName());
+                            num = Integer.parseInt(sc.nextLine());
+                            price = num;
+                            item.setPrice(price);
+                            found = true;
+                        }
+                    }
+
+                    if (!found){
+                         System.out.println("Can't find the item");
+                    }
+                    break;
+                case 3:
+                    System.out.println("3: Collecting Payment");
+
+                    break;
+                case 4: 
+                    System.out.println("4: Replenishing Money");
+
+
+                    break;
+                case 5:
+                    System.out.println("Printing Summary of the transactions");
+
+                    //printTransactionSummary();
+                    break;
+                case 6: 
+                    System.out.println("EXit");
+                    break;
+            }
+        }
     }
 
     /* public void printTransactionSummary() {
