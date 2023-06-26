@@ -17,4 +17,42 @@ public class Transaction{
         denominations = new HashMap<>();
         initializeDenominations();
     }
+    
+    private void initializeDenominations() {
+        for (int denomination : DENOMINATIONS) {
+            denominations.put(denomination, 0);
+        }
+    }
+
+    public void addItem(Item item, int quantity) {
+        // Add item to startingInventory
+    }
+
+    public void removeItem(Item item, int quantity) {
+        // Remove item from startingInventory
+    }
+
+    public void updateQuantitySold(Item item, int quantity) {
+        // Update quantitySold for the item
+    }
+
+    public void updateTotalAmountCollected(int amount) {
+        // Update totalAmountCollected
+    }
+
+    public void addDenomination(Integer denomination, Integer quantity) {
+        denominations.put(denomination, quantity);
+    }
+
+    public void removeDenomination(Integer denomination) {
+        denominations.remove(denomination);
+    }
+
+    public void updateDenominationQuantity(Integer denomination, Integer quantity) {
+        denominations.put(denomination, quantity);
+    }
+
+    public void printSummary() {
+        // Print the summary of transactions
+    }
 }
