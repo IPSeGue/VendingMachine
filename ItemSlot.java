@@ -1,14 +1,23 @@
 public class ItemSlot{
-    private int slotNumber;
+    private int quantity;
     private Item item;
+    
 
-    public ItemSlot(int slotNumber, Item item){
-        this.slotNumber = slotNumber;
+    public ItemSlot(Item item, int quantity) {
         this.item = item;
+        this.quantity = quantity;
     }
-
+    
     public Item getItem(){
         return item;
+    }
+
+    public int getQuantity(){
+        return quantity;
+    }
+
+    public void setQuantity(int quantity){
+        this.quantity = quantity;
     }
 
     public void setItem(Item item){
