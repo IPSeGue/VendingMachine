@@ -6,14 +6,26 @@ import java.util.ArrayList;
 public class VendingMachine{
     private RegularVendingMachine RegularVendingMachine;
     private SpecialVendingMachine SpecialVendingMachine;
-    private HashMap<Integer, Integer>    money = new HashMap<Integer, Integer>();
-    private HashMap<Integer, Integer> userMoney = new HashMap<Integer, Integer>();
+    private Inventory inventory;
+    private HashMap<Integer, Integer> money = new HashMap<>();
+    private HashMap<Integer, Integer> userMoney = new HashMap<>();
     private static final int[] DENOMINATIONS = {1000, 500, 200, 100, 50, 20, 10, 5, 1};
     
     Scanner sc = new Scanner(System.in);
 
     public void create(HashMap<Item,Integer> slots){
-        RegularVendingMachine regular = new RegularVendingMachine(slots);
+        int num, total = 0 ;
+        
+        for(int denomination : DENOMINATIONS){ 
+            System.out.println(denomination + " PESO - How many you want to add ");
+            num = Integer.parseInt(sc.nextLine());
+            money.put(denomination, num);
+            userMoney.put(denomination,0);
+            total += money.get(denomination) * denomination; 
+        }
+        System.out.println("Inserted Total Amount is " + total);
+        inventory = new Inventory(total, 0, money, userMoney);
+        RegularVendingMachine regular = new RegularVendingMachine(slots, inventory);
         this.RegularVendingMachine = regular;
     }
     public void test(){
@@ -28,6 +40,7 @@ public class VendingMachine{
                 case 1:
                     System.out.println("\nWelcome to Test Feature");
                     RegularVendingMachine.displayAvailableItems();
+                    RegularVendingMachine.insertMoney();
                     //.....
                     break;
                 case 2: 

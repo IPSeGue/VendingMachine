@@ -15,7 +15,7 @@ public class Main{
             System.out.println("1. Create a Vending Machine");
             System.out.println("2. Test Vending Machine");
             System.out.println("3. Exit");
-            System.out.println("Enter your choice: ");
+            System.out.print("Enter your choice: ");
             choice = Integer.parseInt(sc.nextLine());
 
             switch (choice){
