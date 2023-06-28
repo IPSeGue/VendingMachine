@@ -28,7 +28,7 @@ public class Main{
                     Item Water = new Item("Water", 21, 10);
                     Item Coke = new Item("Coke", 99, 10);
                     Item Chocolate = new Item("Chocolate", 198, 10);
-                    Item Coffe = new Item("Coffe", 57, 10);
+                    Item Coffee = new Item("Coffee", 57, 10);
                     Item Tea = new Item("Tea", 226, 10);
                     Item IcedTea = new Item("IcedTea", 555, 10);
                     Item Milk = new Item("Milk", 1374, 10);
@@ -46,7 +46,7 @@ public class Main{
                     slot.put(Water,num);
                     slot.put(Coke,num);
                     slot.put(Chocolate,num);
-                    slot.put(Coffe,num);
+                    slot.put(Coffee,num);
                     slot.put(Tea,num);
                     slot.put(IcedTea,num);
                     slot.put(Milk,num);

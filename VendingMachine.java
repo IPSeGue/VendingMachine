@@ -80,7 +80,7 @@ public class VendingMachine{
                     while (!i){
                         System.out.println("What to continue?[Y/N]");
                         select = sc.nextLine();
-                        if (select.equalsIgnoreCase("y")) {
+                        if (select.equals("y") || select.equals("Y")) {
                             RegularVendingMachine.displayAvailableItems();
                             System.out.println("You insertd " + money);
                             System.out.print("What item name (input): ");
@@ -88,7 +88,7 @@ public class VendingMachine{
                             i = RegularVendingMachine.selectingItems(name);
                         }
                         else if (select.equalsIgnoreCase("n")){
-                            i = false;
+                            i = true;
                             inventory.setUserTotalMoney(0);
                         }
                     }

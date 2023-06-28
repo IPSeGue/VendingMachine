@@ -37,13 +37,13 @@
 |              Item            |
 --------------------------------
 | - name: String               |
-| - price: int                 |
+| - price: int              |
 | - calories: int              |
 --------------------------------
 | + getName(): String          |
-| + setName(name: String): void| // i think wala toh
-| + getPrice(): int            |
-| + setPrice(price: int): void | // i think wala toh
+| + setName(name: String): void|
+| + getPrice(): int         |
+| + setPrice(price: int): void|
 | + getCalories(): int         |
 | + setCalories(calories: int): void|
 --------------------------------

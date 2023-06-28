@@ -2,6 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class RegularVendingMachine{
     private HashMap<Item, Integer> itemSlots;
@@ -169,7 +170,7 @@ public class RegularVendingMachine{
     public void calculateCollect(int price, int InsertMoney) {
         int changeAmount = InsertMoney - price;
         int collectedAmount = InsertMoney;
-        int amount = 0, quantity;
+        int amount = 0, quantity, num;
         HashMap<Integer, Integer> temp = new HashMap<>();
         temp = inventory.getMoney();
         int[] denominations = {1000, 500, 200, 100, 50, 20, 10, 5, 1};
@@ -179,9 +180,10 @@ public class RegularVendingMachine{
             if (changeAmount >= denomination) {
                 quantity = changeAmount / denomination;
                 amount = temp.get(denomination);
+                num = quantity;
                 quantity = amount - quantity;
                 inventory.setMoney(denomination, quantity);
-                changeAmount -= denomination * quantity;
+                changeAmount -= denomination * num;
             }
         }
 
@@ -189,7 +191,9 @@ public class RegularVendingMachine{
             if (collectedAmount >= denomination) {
                 quantity = collectedAmount / denomination;
                 amount = temp.get(denomination);
+                
                 quantity = amount + quantity;
+                
                 inventory.setMoney(denomination, quantity);
                 collectedAmount -= denomination * quantity;
             }
@@ -326,17 +330,41 @@ public class RegularVendingMachine{
     }
 
     public void removeItem(String name) {
-        String itemName;
-        int i = 0;
+        Iterator<Map.Entry<Item, Integer>> iterator  = itemSlots.entrySet().iterator();
+        boolean found = false;
+
+        while (iterator.hasNext()) {
+            Map.Entry<Item, Integer> entry = iterator.next();
+            Item item = entry.getKey();
+            String itemName = item.getName();
+
+            if (itemName.equalsIgnoreCase(name)) {
+                iterator.remove(); // Safely remove the item from the HashMap
+                found = true;
+                break;
+            }
+        }
+
+        if (found) {
+            System.out.println("Item '" + name + "' has been successfully removed.");
+        } else {
+            System.out.println("Item '" + name + "' does not exist in the inventory.");
+        }
+
+        /* String itemName; 
+        Item remove;
         for (Map.Entry<Item, Integer> items : itemSlots.entrySet()) {
             Item item = items.getKey();
             itemName = item.getName();
-            i++;
             if (itemName.equalsIgnoreCase(name)){
-                itemSlots.remove(name);
+                remove = new Item(name,item.getPrice(),item.getCalories());
+                itemSlots.remove();
                 System.out.println("Successfully removed");
             }
-        }
+            else{
+                System.out.println("Error removing item");
+            }
+        } */
     }
 
 
@@ -348,6 +376,7 @@ public class RegularVendingMachine{
         HashMap<Integer, Integer> temp;
 
         while(choice != 8){
+            displayAvailableItems();
             System.out.println("1: Restocking");
             System.out.println("2: Change Price");
             System.out.println("3: Collecting Payment");
