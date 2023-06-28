@@ -43,7 +43,15 @@ public class Inventory{
         Inventory.money.put(denomination, quantity);
     }
 
+    public void setMoney(HashMap<Integer,Integer> money){
+        Inventory.money = money;
+    }
+
     public void setUserMoney(int denomination, int quantity){
         Inventory.userMoney.put(denomination, quantity);
+    }
+
+    public void setUserMoney(HashMap<Integer,Integer> money){
+        Inventory.userMoney = money;
     }
 }

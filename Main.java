@@ -36,7 +36,7 @@ public class Main{
                     Item Soda = new Item("Soda", 72, 10);
                     Item Juice = new Item("Juice", 90, 10);
                     
-                    System.out.println("How many quantities are you want for all");
+                    System.out.print("How many quantities are you want for all: ");
                     while ((num = sc.nextInt()) < 10){
                         System.out.println("Invalid input. Please enter a number.");
                     }
