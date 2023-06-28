@@ -3,7 +3,7 @@
  */
 public class Transaction{
     private String name;
-    private int itemprice;
+    private int itemPrice;
     private int quantity;
 
     /**
@@ -13,9 +13,9 @@ public class Transaction{
      * @param itemPrice The price of the item in the transaction.
      * @param quantity  The quantity of the item in the transaction.
      */
-    public Transaction(String name, int itemprice, int quantity){
+    public Transaction(String name, int itemPrice, int quantity){
         this.name = name;
-        this.itemprice = itemprice;
+        this.itemPrice = itemPrice;
         this.quantity = quantity;
     }
 
@@ -34,7 +34,7 @@ public class Transaction{
      * @return The price of the item in the transaction.
      */
     public int getPrice(){
-        return itemprice;
+        return itemPrice;
     }
 
     /**
