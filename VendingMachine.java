@@ -17,11 +17,12 @@ public class VendingMachine{
         int num, total = 0, choice = 0;
         
         while(choice != 1 && choice != 2){
-            System.out.println();
-            System.out.println("Create inventroy");
-            System.out.println("1: Default");
-            System.out.println("2: Input the inventory");
-            System.out.print("Enter the number: ");
+            System.out.println("========================");
+            System.out.println("Vending Machine: Denominations");
+            System.out.println("Please input the action for the Vending Machine's denominations:");
+            System.out.println("1: Default - no denominations will be stored in this machine.");
+            System.out.println("2: Population of Denomination Inventory");
+            System.out.print("Enter the action to be taken: ");
             choice = Integer.parseInt(sc.nextLine());
 
             switch (choice){
@@ -34,7 +35,7 @@ public class VendingMachine{
                     break;
                 case 2:
                     for(int denomination : DENOMINATIONS){ 
-                        System.out.println(denomination + " PESO - How many you want to add ");
+                        System.out.println(denomination + " PESO - Please input quantity of bills/coins in the machine:");
                         num = Integer.parseInt(sc.nextLine());
                         money.put(denomination, num);
                         userMoney.put(denomination,0);
@@ -54,7 +55,8 @@ public class VendingMachine{
     public void test(){
         int choice = 0;
         while(choice !=3){
-            System.out.println();
+            System.out.println("========================");
+            System.out.println("Vending Machine Testing and Maintenance");
             System.out.println("1: Testing Features");
             System.out.println("2: Maintenance features");
             System.out.println("3: Exit");
@@ -67,23 +69,23 @@ public class VendingMachine{
                     int money;
                     String name, select;
 
-                    System.out.println("\nWelcome to Test Feature");
+                    System.out.println("\nWelcome to Test Features! Simulating Vending Machine now...");
                     RegularVendingMachine.displayAvailableItems();
                     RegularVendingMachine.insertMoney();
                     System.out.println();
                     RegularVendingMachine.displayAvailableItems();
                     money = inventory.getUserTotalMoney();
-                    System.out.println("You insertd " + money);
-                    System.out.print("What item name (input): ");
+                    System.out.println("Amount inserted: " + money);
+                    System.out.print("What will you order?: ");
                     name = sc.nextLine();
                     i = RegularVendingMachine.selectingItems(name);
                     while (!i){
-                        System.out.println("What to continue?[Y/N]");
+                        System.out.println("Continue or Cancel Transaction?[Y/N]");
                         select = sc.nextLine();
                         if (select.equals("y") || select.equals("Y")) {
                             RegularVendingMachine.displayAvailableItems();
-                            System.out.println("You insertd " + money);
-                            System.out.print("What item name (input): ");
+                            System.out.println("Amount Inserted: " + money);
+                            System.out.print("What will you order?: ");
                             name = sc.nextLine();
                             i = RegularVendingMachine.selectingItems(name);
                         }
@@ -94,7 +96,7 @@ public class VendingMachine{
                     }
                     break;
                 case 2: 
-                    System.out.println("\nWelcome to Maintenance");
+                    System.out.println("\nWelcome to Vending Machine Maintenance!");
                     RegularVendingMachine.maintenance();
                     break;
                 case 3:

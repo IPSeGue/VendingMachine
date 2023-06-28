@@ -11,7 +11,8 @@ public class Main{
         boolean created = false;
 
         while(choice != 3){
-            System.out.println("Choose an option: ");
+            System.out.println("Welcome to the Vending Machine System!");
+            System.out.println("Please Choose an option: ");
             System.out.println("1. Create a Vending Machine");
             System.out.println("2. Test Vending Machine");
             System.out.println("3. Exit");
@@ -21,7 +22,7 @@ public class Main{
             switch (choice){
                 case 1:
                     if (created){
-                        System.out.println("You have created your own vending machine");
+                        System.out.println("Vending Machine has been created!");
                         break;
                     }
                     // Name, price, calories
@@ -36,9 +37,9 @@ public class Main{
                     Item Soda = new Item("Soda", 72, 10);
                     Item Juice = new Item("Juice", 90, 10);
                     
-                    System.out.print("How many quantities are you want for all: ");
+                    System.out.print("Please input the Quantity of all products: ");
                     while ((num = sc.nextInt()) < 10){
-                        System.out.println("Invalid input. Please enter a number.");
+                        System.out.println("Invalid input. Please enter a valid number.");
                     }
                     sc.nextLine();
                     
@@ -55,13 +56,18 @@ public class Main{
                     slot.put(Juice,num);
                     
                     vendingMachine.create(slot);
-                    System.out.println("Successfully created");
+                    System.out.println("Vending Machine Stocked!");
+                    System.out.println("========================");
                     created = true;
                     break;
                     
                 case 2:
                     if (created) {
                         vendingMachine.test();
+                    }
+                    else{
+                        System.out.println("A Vending Machine has not been created yet. Please create one before choosing this option.");
+                        System.out.println("========================");
                     }
                     break;
 

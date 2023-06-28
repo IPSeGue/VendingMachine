@@ -38,8 +38,8 @@ public class RegularVendingMachine{
             if (itemName.equalsIgnoreCase(item.getName())) {
                 if (itemName.equalsIgnoreCase(item.getName()) && quantity > 0) {
                     if (itemName.equalsIgnoreCase(item.getName()) && quantity > 0 && money >= price) {
-                        System.out.println("The calories of the item " + name + " is " + calories);
-                        System.out.println("You want to continue? [Y/N]");
+                        System.out.println("The calories of " + name + " is " + calories);
+                        System.out.println("Continue with Purchase? [Y/N]");
                         choice = sc.nextLine();
                         if (choice.equalsIgnoreCase("Y")) {
                             remaining = money - price;
@@ -106,7 +106,7 @@ public class RegularVendingMachine{
             System.out.println("Dispensed the item");
             System.out.println();
             System.out.println("--------------RECEIPT---------------");
-            System.out.println("Iteam: "+ name);
+            System.out.println("Item: "+ name);
             System.out.println("Price: "+ price);
             System.out.println("Change: "+ remaining);
             System.out.println("------------------------------------");
@@ -117,7 +117,7 @@ public class RegularVendingMachine{
             return true;
         }
         else if (!found && !n && !m && !q && !c){
-            System.out.println("Cancelled");
+            System.out.println("Transaction Cancelled.");
             inventory.setUserTotalMoney(0);
             return true;
         }
@@ -126,7 +126,7 @@ public class RegularVendingMachine{
             return false;
         }
         else if (!m){
-            System.out.println("Not enough money to purchase << Insered: " + money + " item price: " + price);
+            System.out.println("Not enough money to purchase << Inserted: " + money + " item price: " + price);
             return false;
         }
         else if (!q){
@@ -205,7 +205,7 @@ public class RegularVendingMachine{
         int num, total = 0, choice = -1;
         
         while(choice != 0){
-            System.out.println("The money you inserted");
+            System.out.println("Please insert the bills/coins you wish to use:");
             System.out.println("[1]: 1000  [2]: 500  [3]:200");
             System.out.println("[4]: 100   [5]: 50   [6]:20");
             System.out.println("[7]: 10    [8]: 5    [9]:1");
@@ -213,10 +213,11 @@ public class RegularVendingMachine{
             System.out.print("Enter the number: ");    
             choice = Integer.parseInt(sc.nextLine());
             if (choice == 0){
-                System.out.println("Exit the inserting of money");
+                System.out.println("Insertion complete! Proceeding to Transaction...");
+                System.out.println("====================");
                 break;
             }
-            System.out.print("How many times: ");
+            System.out.print("Amount of bills/coins inserted: ");
             num = Integer.parseInt(sc.nextLine());
 
             switch (choice) {
@@ -266,6 +267,8 @@ public class RegularVendingMachine{
                     inventory.setUserTotalMoney(total);
                     break;
             }
+            System.out.println("Amount Inserted: " + total);
+            System.out.println("========================");
         }
     }
 
@@ -286,7 +289,7 @@ public class RegularVendingMachine{
             } 
             
         }
-
+        System.out.println("========================");
     }
 
     public void replenishMoney(int denomination, int quantity){
@@ -377,6 +380,7 @@ public class RegularVendingMachine{
 
         while(choice != 8){
             displayAvailableItems();
+            System.out.println("Maintenance Options:");
             System.out.println("1: Restocking");
             System.out.println("2: Change Price");
             System.out.println("3: Collecting Payment");
@@ -392,7 +396,7 @@ public class RegularVendingMachine{
                 
                 case 1:
                     displayAvailableItems();
-                    System.out.println("Enter the Name");
+                    System.out.println("Enter the Product Name:");
                     itemName = sc.nextLine();
 
                     for (Map.Entry<Item, Integer> items : itemSlots.entrySet()) {
@@ -400,7 +404,7 @@ public class RegularVendingMachine{
                         quantity = items.getValue();
                         name = item.getName();
                         if (itemName.equalsIgnoreCase(item.getName())) {
-                            System.out.println("What quantity you want to apply to "+ item.getName());
+                            System.out.println("What is the new quantity of "+ item.getName());
                             num = Integer.parseInt(sc.nextLine());
                             quantity = num;
                             itemSlots.put(item, quantity);
@@ -409,12 +413,12 @@ public class RegularVendingMachine{
                     }
 
                     if (!found){
-                         System.out.println("Can't find the item");
+                         System.out.println("Unable to Find the item.");
                     }
                     break;
                 case 2: 
                     displayAvailableItems();
-                    System.out.println("Enter the Name");
+                    System.out.println("Enter the Product Name:");
                     itemName = sc.nextLine();
 
                     for (Map.Entry<Item, Integer> items : itemSlots.entrySet()) {
@@ -423,7 +427,7 @@ public class RegularVendingMachine{
                         name = item.getName();
                         price = item.getPrice();
                         if (itemName.equalsIgnoreCase(item.getName())) {
-                            System.out.println("What Price you want to apply to "+ item.getName());
+                            System.out.println("Please input new price of "+ item.getName());
                             num = Integer.parseInt(sc.nextLine());
                             
                             price = num;
@@ -433,7 +437,7 @@ public class RegularVendingMachine{
                     }
 
                     if (!found){
-                         System.out.println("Can't find the item");
+                         System.out.println("Unable to Find the item.");
                     }
                     break;
                 case 3: 
@@ -476,7 +480,7 @@ public class RegularVendingMachine{
                     printTransactionSummary();
                     break;
                 case 6:
-                    System.out.println("Create new Item");
+                    System.out.println("New Item Creation");
                     System.out.print("Name: ");
                     name = sc.nextLine();
                     System.out.print("Price: ");
@@ -490,17 +494,17 @@ public class RegularVendingMachine{
                     break;
                 case 7: 
                     displayAvailableItems();
-                    System.out.println("Remove a Item");
-                    System.out.print("Name of it: ");
+                    System.out.println("Item Removal");
+                    System.out.print("Name of Product: ");
                     name = sc.nextLine();
 
                     removeItem(name);
                     break;
                 case 8: 
-                    System.out.println("EXit");
+                    System.out.println("Exit");
                     break; 
                 default:
-                    System.out.println("Input Again\n");
+                    System.out.println("Please input a valid number.\n");
                     break;
             }
         }
@@ -519,7 +523,7 @@ public class RegularVendingMachine{
         System.out.println("Price: " + price);
         System.out.println("Quantity: " + quantity);
         System.out.println("Total Amount: " + totalAmount);
-        System.out.println("------------------------");
+        System.out.println("=========================");
     }
 }
 
