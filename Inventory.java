@@ -72,7 +72,7 @@ public class Inventory{
     /**
      * Sets the user's total money in the inventory.
      *
-     * @param totalMoney The new user's total money in the inventory.
+     * @param userTotalMoney The new user's total money in the inventory.
      */
     public void setUserTotalMoney(int userTotalMoney){
         Inventory.userTotalMoney = userTotalMoney;
