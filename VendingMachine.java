@@ -7,7 +7,6 @@ import java.util.Scanner;
  */
 public class VendingMachine{
     private RegularVendingMachine RegularVendingMachine;
-    private SpecialVendingMachine SpecialVendingMachine;
     private Inventory inventory;
     private HashMap<Integer, Integer> money = new HashMap<>();
     private HashMap<Integer, Integer> userMoney = new HashMap<>();

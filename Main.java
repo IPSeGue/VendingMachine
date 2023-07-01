@@ -21,7 +21,7 @@ public class Main{
         int choice = 0;
         boolean created = false;
         
-        Scanner     sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         while(choice != 3){
             System.out.println("Welcome to the Vending Machine System!");
             System.out.println("Please Choose an option: ");
@@ -45,7 +45,7 @@ public class Main{
                     Item Coffee = new Item("Coffee", 57, 1);
                     Item Tea = new Item("Tea", 226, 2);
                     Item IcedTea = new Item("IcedTea", 555, 35);
-                    Item Milk = new Item("Milk", 1374, 42);
+                    Item Milk = new Item("Milk", 374, 42);
                     Item Wine = new Item("Wine", 23, 83);
                     Item Soda = new Item("Soda", 72, 41);
                     Item Juice = new Item("Juice", 90, 54);

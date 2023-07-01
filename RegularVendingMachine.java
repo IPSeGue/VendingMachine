@@ -20,7 +20,7 @@ public class RegularVendingMachine{
     /**
      * Creates a new regular vending machine with the given item slots and inventory.
      *
-     * @param itemSlots  the slots containing the available items and their quantities
+     * @param slot  the slots containing the available items and their quantities
      * @param inventory  the inventory of the vending machine
      */
     public RegularVendingMachine(HashMap<Item, Integer> slot, Inventory inventory){
@@ -160,11 +160,11 @@ public class RegularVendingMachine{
      * Calculates and updates the change to be given based on the price and the amount of money inserted.
      *
      * @param price         the price of the item
-     * @param insertedMoney the amount of money inserted by the user
+     * @param insertMoney the amount of money inserted by the user
      * @return true if change can be given, false otherwise
      */
-    public boolean calculateChange(int price, int InsertMoney) {
-        int changeAmount = InsertMoney - price;
+    public boolean calculateChange(int price, int insertMoney) {
+        int changeAmount = insertMoney - price;
         int quantity, amount = 0;
         boolean changed = false;
         HashMap<Integer, Integer> temp = new HashMap<>();
@@ -193,11 +193,11 @@ public class RegularVendingMachine{
      * Calculates the change and updates the collected money based on the price and the amount of money inserted.
      *
      * @param price         the price of the item
-     * @param insertedMoney the amount of money inserted by the user
+     * @param insertMoney the amount of money inserted by the user
      */
-    public void calculateCollect(int price, int InsertMoney) {
-        int changeAmount = InsertMoney - price;
-        int collectedAmount = InsertMoney;
+    public void calculateCollect(int price, int insertMoney) {
+        int changeAmount = insertMoney - price;
+        int collectedAmount = insertMoney;
         int amount = 0, quantity, num;
         HashMap<Integer, Integer> temp = new HashMap<>();
         temp = inventory.getMoney();
