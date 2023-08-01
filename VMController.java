@@ -2,9 +2,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
+
 /**
- *
- * @author o_0
+ * The VMController class serves as the controller for the Vending Machine system, managing interactions between the different views and the VMModel.
+ * It handles user actions and updates the views and model accordingly to maintain the functionality of the vending machine application.
  */
 public class VMController {
     private StartView startView;
@@ -15,6 +16,15 @@ public class VMController {
     
     private VMModel vmModel;
     
+    /**
+     * Constructs a new VMController object to manage the Vending Machine application.
+     * @param startView The start view of the vending machine.
+     * @param createVending The create vending view of the vending machine.
+     * @param regularView The regular view of the vending machine.
+     * @param specialView The special view of the vending machine.
+     * @param userView The maintenance view of the vending machine.
+     * @param model The VMModel representing the vending machine's state and data.
+     */
     public VMController(StartView startView, CreateVending createVending, RegularView regularView, SpecialView specialView, MaintenanceView userView, VMModel model){
         this.startView = startView;
         this.createVending = createVending;
@@ -394,7 +404,10 @@ public class VMController {
         
     }
     
-    
+    /**
+     * The main method to launch the Vending Machine application.
+     * @param args Command-line arguments (not used in this application).
+     */
     public static void main(String [] args){
         StartView startView = new StartView();
         CreateVending createVending = new CreateVending();

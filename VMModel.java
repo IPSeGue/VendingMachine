@@ -8,8 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author o_0
+ * The VMModel class represents the Model component of the Vending Machine application. It stores the state and data related to the vending machine, manages the inventory, sales, and handles various vending operations.
  */
 public class VMModel {
     private JFrame frame;
@@ -30,6 +29,9 @@ public class VMModel {
     private int total = 0;
     private static final int[] DENOMINATIONS = {1000, 500, 200, 100, 50, 20, 10, 5, 1};
     
+    /**
+     * Constructs a new VMModel object representing the Vending Machine's state and data.
+     */
     public VMModel(){
         frame = new JFrame();
         temp = new HashMap<>();
@@ -43,6 +45,10 @@ public class VMModel {
         inventory = new Inventory(0,0,money,userMoney);
     }
     
+    /**
+     * Sets the default items in the vending machine's slots with initial quantities.
+     * @param text The text representing a default item (not used in the method).
+     */
     public void defaultItem(String text){
         Item Water = new Item("Water", 21, 0);
         Item Coke = new Item("Coke", 99, 139);
@@ -68,6 +74,10 @@ public class VMModel {
             slot.put(Juice, quantity);
     }
     
+    /**
+     * Adds the specified number of money units to the vending machine's money inventory.
+     * @param text The text representing the number of money units to add.
+     */
     public void addStartInventory(String text){
         num = Integer.parseInt(text);
         int tempM, tempQ = 0;
@@ -85,6 +95,9 @@ public class VMModel {
         
     }
     
+    /**
+     * Resets the vending machine's money inventory by setting the quantity of each denomination to 0.
+     */
     public void resetStartInventory(){
         for(int denomination : DENOMINATIONS){
             money.put(denomination, 0);
@@ -94,6 +107,13 @@ public class VMModel {
         inventory.setTotalMoney(total);
     }
     
+    /**
+     * Creates a new vending machine with the specified slot items, money inventory, vending machine name, and vending mode.
+     * @param slot A HashMap representing the items and their quantities in the vending machine slots.
+     * @param money The Inventory object representing the money inventory of the vending machine.
+     * @param name The name of the vending machine.
+     * @param check A boolean flag indicating the vending mode (regular or special).
+     */
     public void create(HashMap<Item, Integer> slot, Inventory money, String name, boolean check){
         this.slot = slot;
         this.inventory = money;
@@ -101,6 +121,12 @@ public class VMModel {
         this.vending = check;
     }
     
+    /**
+     * Handles the regular buying process for the specified item in the vending machine.
+     * @param input The name of the item the user wants to purchase.
+     * @param sum The amount of money inserted by the user.
+     * @return True if the purchase is successful; otherwise, false.
+     */
     public boolean regularBuy(String input, int sum){
         String name = "";
         int check = 0;
@@ -147,6 +173,12 @@ public class VMModel {
         return display;
     }
     
+    /**
+     * Handles the seller's buying process when multiple items are involved.
+     * @param input The name of the item the seller wants to purchase.
+     * @param sum The amount of money inserted by the seller.
+     * @return True if the purchase is successful; otherwise, false.
+     */
     public boolean sellerBuy(String input, int sum){
         String name = "";
         change = 0;
@@ -192,6 +224,12 @@ public class VMModel {
         return display;
     }
     
+    /**
+     * Calculates the change for a given price and the amount of money inserted.
+     * @param price The price of the item.
+     * @param insertMoney The amount of money inserted.
+     * @return True if change can be provided; otherwise, false.
+     */
     public boolean calculateChange(int price, int insertMoney) {
         int changeAmount = insertMoney - price;
         int amount = 0;
@@ -217,6 +255,11 @@ public class VMModel {
         return changed;
     }
     
+    /**
+     * Calculates the money collected and updates the money inventory after a successful purchase.
+     * @param price The price of the purchased item.
+     * @param insertMoney The amount of money inserted by the user.
+     */
     public void calculateCollect(int price, int insertMoney) {
         int changeAmount = insertMoney - price;
         int collectedAmount = insertMoney;
@@ -250,6 +293,11 @@ public class VMModel {
         }
     }
     
+    /**
+     * Handles the process of adding an item to the shopping cart.
+     * @param text The name of the item to be added to the shopping cart.
+     * @return True if the item is added successfully; otherwise, false.
+     */
     public boolean addBuyItem(String text){
         boolean checkN = false, display = false;
         for (Map.Entry<Item, Integer> entry : slot.entrySet()) {
@@ -278,6 +326,12 @@ public class VMModel {
         
     }
     
+    /**
+     * Updates information about an item in the vending machine inventory, such as restocking quantity or changing its price.
+     * @param n The name of the item to be updated.
+     * @param r The restocking quantity for the item (can be empty).
+     * @param c The new price for the item (can be empty).
+     */
     public void updateInfo(String n, String r, String c){
         int restocking;
         int changePrice;
@@ -316,6 +370,13 @@ public class VMModel {
         }
     }
     
+    /**
+     * Adds a new item to the vending machine inventory.
+     * @param n The name of the new item.
+     * @param p The price of the new item.
+     * @param c The calories of the new item.
+     * @param q The quantity of the new item in stock.
+     */
     public void addNewItem(String n, String p, String c, String q){
         
         int newP = Integer.parseInt(p);
@@ -330,6 +391,10 @@ public class VMModel {
         
     }
     
+    /**
+     * Removes an item from the vending machine inventory.
+     * @param n The name of the item to be removed.
+     */
     public void removeItem(String n){
         
         Iterator<Map.Entry<Item, Integer>> iterator  = slot.entrySet().iterator();
@@ -354,78 +419,152 @@ public class VMModel {
         }
     }
     
+    /**
+     * Get the inventory of the vending machine.
+     * @return The Inventory object representing the current state of the vending machine inventory.
+     */
     public Inventory getInventory(){
         return this.inventory;
     }
     
+    /**
+     * Get the HashMap representing the available slots and quantities of items in the vending machine.
+     * @return A HashMap with Item objects as keys and Integer values representing the quantity of each item.
+     */
     public HashMap<Item,Integer> getSlots(){
         return this.slot;
     }
     
-   public ArrayList<Transaction> getSales(){
+    /**
+     * Get the list of transactions representing the sales made in the vending machine.
+     * @return An ArrayList of Transaction objects representing the sales made in the vending machine.
+     */
+    public ArrayList<Transaction> getSales(){
         return this.sales;
     }
-        
+    
+    /**
+     * Get the name of the vending machine.
+     * @return A String representing the name of the vending machine.
+     */
     public String getName(){
         return this.name;
     }
     
+    /**
+     * Check whether the vending machine is operational or not.
+     * @return A boolean value indicating whether the vending machine is operational (true) or not (false).
+     */
     public boolean check(){
         return this.vending;
     }
     
+    /**
+     * Get the name of the last item bought from the vending machine.
+     * @return A String representing the name of the last item bought from the vending machine.
+     */
     public String getItemName(){
         return this.itemName;
     }
     
+    /**
+     * Get the price of the last item bought from the vending machine.
+     * @return An integer representing the price of the last item bought from the vending machine.
+     */
     public int getPrice(){
         return this.price;
     }
     
+    /**
+     * Get the calories of the last item bought from the vending machine.
+     * @return An integer representing the calories of the last item bought from the vending machine.
+     */
     public int getCalories(){
         return this.calories;
     }
     
+    /**
+     * Get the change amount from the last transaction made in the vending machine.
+     * @return An integer representing the change amount from the last transaction.
+     */
     public int getChange(){
         return this.change;
     }
-   
+    
+    /**
+     * Get the count of items bought in the last transaction from the vending machine.
+     * @return An integer representing the count of items bought in the last transaction.
+     */
     public int getCount(){
         return this.count;
     }
     
+    /**
+     * Get the total price of the items selected for purchase in the current transaction.
+     * @return An integer representing the total price of the items selected for purchase.
+     */
     public int getValueP(){
         return this.valueP;
     }
     
+    /**
+     * Get the total calories of the items selected for purchase in the current transaction.
+     * @return An integer representing the total calories of the items selected for purchase.
+     */
     public int getValueC(){
         return this.valueC;
     }
     
+    /**
+     * Get the list of names of items selected for purchase in the current transaction.
+     * @return An ArrayList of Strings representing the names of items selected for purchase.
+     */
     public ArrayList<String> getListItem(){
         return this.listName;
     }
     
+    /**
+     * Get the total money available in the vending machine.
+     * @return An integer representing the total money available in the vending machine.
+     */
     public int getTotal(){
         return this.total;
     }
     
+    /**
+     * Set the total price of the items selected for purchase in the current transaction.
+     * @param value The new total price of the items selected for purchase.
+     */
     public void setValueP(int value){
         this.valueP = value;
     }
     
+    /**
+     * Set the total calories of the items selected for purchase in the current transaction.
+     * @param value The new total calories of the items selected for purchase.
+     */
     public void setValueC(int value){
         this.valueC = value;
     }
     
+    /**
+     * Clear the temporary slot containing items selected for purchase in the current transaction.
+     */
     public void setTempSlot(){
         this.tempSlot.clear();
     }
     
+    /**
+     * Clear the list containing names of items selected for purchase in the current transaction.
+     */
     public void setTListName(){
         this.listName.clear();
     }
     
+    /**
+     * Set the inventory of the vending machine to a new state.
+     * @param newInventory The new Inventory object representing the updated state of the vending machine inventory.
+     */
     public void setInventory(Inventory newInventory){
        this.inventory = newInventory;
     }
