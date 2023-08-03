@@ -284,11 +284,11 @@ public class VMModel {
             if (collectedAmount >= denomination) {
                 quantity = collectedAmount / denomination;
                 amount = tempMoney.get(denomination);
-                
+                num = quantity;
                 quantity = amount + quantity;
                 
                 inventory.setMoney(denomination, quantity);
-                collectedAmount -= denomination * quantity;
+                collectedAmount -= denomination * num;
             }
         }
     }
